@@ -63,11 +63,10 @@
 			},
 
 			getCoin() {
-				if data.stone > 0 {
+				if (data.stone >= 1) {
+					data.stone -= 1;
 					data.coins++;
-					data.stone--;
-					game.updateDisplay();
-				},
+				}
 			},
 
 			getStone() {
