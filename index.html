@@ -38,6 +38,7 @@
 			init() {
 				// using `element.onclick` is cancer, but it is simple and does work
 				btnBuyWorker.onclick = () => game.getWorker();
+				btnGetStone.onclick = () => game.getStone();
 			},
 			/** everything that updates goes here */
 			tick() {
@@ -62,6 +63,11 @@
 
 			getCoin() {
 				data.coins++;
+				game.updateDisplay();
+			},
+
+			getStone() {
+				data.stone++;
 				game.updateDisplay();
 			},
 
