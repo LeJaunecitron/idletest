@@ -1,12 +1,12 @@
 <html>
 
 <head>
-	<title>The Cancer Idle</title>
+	<title>Idle Test</title>
 </head>
 
 <body>
-	<small>source code on <a
-			href="https://github.com/Dimava/dimava.github.io/blob/master/idle-game-examples/cancer/index.html">Github</a></small>
+	<small> thx to Dimava <a
+			href="https://github.com/Dimava/dimava.github.io/blob/master/idle-game-examples/cancer/index.html">His example</a></small>
 
 	<!-- writing game elements in html is ok, and is a common practice -->
 	
@@ -42,7 +42,7 @@
 			},
 			/** everything that updates goes here */
 			tick() {
-				data.coins += data.workers;
+				data.stone += data.workers;
 
 				game.updateDisplay();
 			},
@@ -54,10 +54,11 @@
 				// using `button.disabled` is a good practice
 				// updating every text every tick may be cancer if you do over 10'000 text updates per second
 				elCoins.innerText = data.coins;
+				elStone.innerText = data.stone;
 				elWorkerContainer.hidden = data.workers == 0 && !game.canGetWorker();
 				elWorkerCost.innerText = game.getWorkerCost();
 				elWorkerCount.innerText = data.workers;
-				elEndGame.hidden = data.workers < 2;
+				elEndGame.hidden = data.workers < 100;
 
 			},
 
