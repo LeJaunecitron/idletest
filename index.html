@@ -42,7 +42,7 @@
 			},
 			/** everything that updates goes here */
 			tick() {
-				data.coins += data.workers;
+				data.stone += data.workers;
 
 				game.updateDisplay();
 			},
@@ -64,7 +64,7 @@
 
 			getCoin() {
 				if (data.stone >= 1) {
-					data.stone == data.stone - 1;
+					data.stone = data.stone - 1;
 					data.coins++;
 				}
 				game.updateDisplay();
