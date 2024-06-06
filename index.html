@@ -47,10 +47,7 @@
 				data.tick = data.tick + 1;
 				data.stone += data.miners;
 
-				if (data.tick % 2 = 0) {
-					data.stone = data.stone - 2;
-					data.coins++;
-				}
+				
 
 				game.updateDisplay();
 			},
@@ -59,9 +56,11 @@
 
 				elStone.innerText = data.stone;
 				elCoins.innerText = data.coins;
+				elMinerContainer.innerText = data.miners;
 				elMinerContainer.hidden = data.miners == 0 && !game.canGetMiner();
 				elMinerCost.innerText = game.getMinerCost();
 				elMinerCount.innerText = data.miners;
+				elSellerCointainer.innerText = data.sellers;
 				elSellerContainer.hidden = data.sellers == 0 && !game.canGetSeller();
 				elSellerCost.innerText = game.getSellerCost();
 				elSellerCount.innerText = data.sellers;
