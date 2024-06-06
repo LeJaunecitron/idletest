@@ -100,7 +100,7 @@
 			},
 			
 			getSellerCost() {
-				return (data.workers + 10) + (data.sellers + 20);
+				return data.sellers * 2 + 20);
 			},
 			canGetSeller() {
 				return data.coins >= game.getSellerCost();
