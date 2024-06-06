@@ -1,41 +1,44 @@
 <html>
 
 <head>
-	<title>The Cancer Idle</title>
+	<title>Idle test</title>
 </head>
 
 <body>
 	<small>source code on <a
 			href="https://github.com/Dimava/dimava.github.io/blob/master/idle-game-examples/cancer/index.html">Github</a></small>
 
-
+	<div id="elStoneContainer"> Stone: <span id="elStone"></span> </div>
 	<div id="elCoinsContainer"> Coins: <span id="elCoins"></span> </div>
-	<div id="elWorkerContainer"> Workers: <span id="elWorkerCount"></span> </div>
+	<div id="elMinerContainer"> miners: <span id="elMinerCount"></span> </div>
 	<br>
 
+	<button onclick="game.getStone()"> Mine for a stone </button>
 	<button onclick="game.getCoin()"> Get a coin </button>
-	<button id="btnBuyWorker"> Get a worker (<span id="elWorkerCost"></span> coins)</button>
+	<button id="btnBuyMiner"> Get a worker (<span id="elMinerCost"></span> coins)</button>
 	<br>
-	<div id="elEndGame"> There is no more content in the game </div>
+	<div id="elEndGame">  </div>
 	<button style="float: right;" onclick="game.clearSave()"> Reset game </button>
 
 
 	<script>
 		/** everything that saves goes here */
 		var data = {
+			stone: 0,
 			coins: 0,
-			workers: 0,
+			miners: 0,
+			sellers: 0,
 		};
 		/** everything that is function goes here */
 		var game = {
 			/** initialization goes here */
 			init() {
 				
-				btnBuyWorker.onclick = () => game.getWorker();
+				btnBuyMiner.onclick = () => game.getMiner();
 			},
 			/** everything that updates goes here */
 			tick() {
-				data.coins += data.workers;
+				data.stone += data.miners;
 
 				game.updateDisplay();
 			},
@@ -43,10 +46,10 @@
 			updateDisplay() {
 				
 				elCoins.innerText = data.coins;
-				elWorkerContainer.hidden = data.workers == 0 && !game.canGetWorker();
-				elWorkerCost.innerText = game.getWorkerCost();
-				elWorkerCount.innerText = data.workers;
-				elEndGame.hidden = data.workers < 2;
+				elMinerContainer.hidden = data.miners == 0 && !game.canGetMiner();
+				elMinerCost.innerText = game.getMinerCost();
+				elMinerCount.innerText = data.miners;
+				elEndGame.hidden = data.miners < 2;
 
 			},
 
@@ -55,16 +58,16 @@
 				game.updateDisplay();
 			},
 
-			getWorkerCost() {
-				return data.workers + 10;
+			getMinerCost() {
+				return data.miners + 10;
 			},
-			canGetWorker() {
-				return data.coins >= game.getWorkerCost();
+			canGetMiner() {
+				return data.coins >= game.getMinerCost();
 			},
-			getWorker() {
-				if (game.canGetWorker()) {
-					data.coins -= game.getWorkerCost();
-					data.workers++;
+			getMiner() {
+				if (game.canGetMiner()) {
+					data.coins -= game.getMinerCost();
+					data.miners++;
 				}
 				game.updateDisplay();
 			},
