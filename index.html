@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>Idle test 1</title>
+	<title>Idle test 0</title>
 </head>
 
 <body>
@@ -69,6 +69,11 @@
 					data.stone = data.stone - 2;
 					data.coins++;
 				}
+				game.updateDisplay();
+			},
+			getStone() {
+				data.stone++;
+				
 				game.updateDisplay();
 			},
 
