@@ -10,12 +10,14 @@
 
 	<div id="elStoneContainer"> Stone: <span id="elStone"></span> </div>
 	<div id="elCoinsContainer"> Coins: <span id="elCoins"></span> </div>
-	<div id="elMinerContainer"> miners: <span id="elMinerCount"></span> </div>
+	<div id="elMinerContainer"> Miners: <span id="elMinerCount"></span> </div>
+	<div id="elSellerContainer"> Sellers: <span id="elSellerCount"></span> </div>
 	<br>
 
 	<button onclick="game.getStone()"> Mine for a stone </button>
 	<button onclick="game.getCoin()"> Get a coin </button>
-	<button id="btnBuyMiner"> Get a worker (<span id="elMinerCost"></span> coins)</button>
+	<button id="btnBuyMiner"> Get a miner (<span id="elMinerCost"></span> coins)</button>
+	<button id="btnBuySeller"> Get a seller (<span id="elSellerCost"></span> coins)</button>
 	<br>
 	<div id="elEndGame">  </div>
 	<button style="float: right;" onclick="game.clearSave()"> Reset game </button>
@@ -25,9 +27,11 @@
 		/** everything that saves goes here */
 		var data = {
 			stone: 0,
+			tick: 0,
 			coins: 0,
 			miners: 0,
 			sellers: 0,
+		
 		};
 		/** everything that is function goes here */
 		var game = {
@@ -38,18 +42,28 @@
 			},
 			/** everything that updates goes here */
 			tick() {
+				data.tick = data.tick + 1;
 				data.stone += data.miners;
+
+				
+				if (data.tick % 2 = 1) {
+					data.stone -= data.sellers * 2;
+					data.coins = data.coins + data.sellers;
+				}
 
 				game.updateDisplay();
 			},
 			/** everything that draws goes here */
 			updateDisplay() {
-				
+
+				elStone.innerText = data.stone;
 				elCoins.innerText = data.coins;
 				elMinerContainer.hidden = data.miners == 0 && !game.canGetMiner();
 				elMinerCost.innerText = game.getMinerCost();
 				elMinerCount.innerText = data.miners;
-				elEndGame.hidden = data.miners < 2;
+				elSellerContainer.hidden = data.sellers == 0 && !game.canGetSeller();
+				elSellerCost.innerText = game.getSellerCost();
+				elSellerCount.innerText = data.sellers;
 
 			},
 
@@ -68,6 +82,20 @@
 				if (game.canGetMiner()) {
 					data.coins -= game.getMinerCost();
 					data.miners++;
+				}
+				game.updateDisplay();
+			},
+
+			getSellerCost() {
+				return data.Seller * 2 + 20;
+			},
+			canGetSeller() {
+				return data.coins >= game.getSellerCost();
+			},
+			getSeller() {
+				if (game.canGetSeller()) {
+					data.coins -= game.getSellerCost();
+					data.sellers++;
 				}
 				game.updateDisplay();
 			},
