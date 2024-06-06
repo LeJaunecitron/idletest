@@ -56,11 +56,11 @@
 
 				elStone.innerText = data.stone;
 				elCoins.innerText = data.coins;
-				elMinerContainer.innerText = data.miners;
+
 				elMinerContainer.hidden = data.miners == 0 && !game.canGetMiner();
 				elMinerCost.innerText = game.getMinerCost();
 				elMinerCount.innerText = data.miners;
-				elSellerCointainer.innerText = data.sellers;
+
 				elSellerContainer.hidden = data.sellers == 0 && !game.canGetSeller();
 				elSellerCost.innerText = game.getSellerCost();
 				elSellerCount.innerText = data.sellers;
