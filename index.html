@@ -1,36 +1,29 @@
 <html>
 
 <head>
-	<title>Idle Test</title>
+	<title>The Cancer Idle</title>
 </head>
 
 <body>
-	<small>thx dimava for his example <a
-			href="https://github.com/Dimava/dimava.github.io/blob/master/idle-game-examples/cancer/index.html">Link</a></small>
+	<small>source code on <a
+			href="https://github.com/Dimava/dimava.github.io/blob/master/idle-game-examples/cancer/index.html">Github</a></small>
 
-	
-	<div id="elStoneContainer"> Stone: <span id="elStone"></span> </div>
+	<!-- writing game elements in html is ok, and is a common practice -->
 	<div id="elCoinsContainer"> Coins: <span id="elCoins"></span> </div>
 	<div id="elWorkerContainer"> Workers: <span id="elWorkerCount"></span> </div>
-	<div id="elSellerContainer"> Sellers: <span id="elSellerCount"></span> </div>
 	<br>
-
-	<button onclick="game.getStone()"> Get a stone </button>
-	<button onclick="game.getCoin()"> sell a stone </button>
+	<!-- using onclick in html is cancer, but is a common practice -->
+	<button onclick="game.getCoin()"> Get a coin </button>
 	<button id="btnBuyWorker"> Get a worker (<span id="elWorkerCost"></span> coins)</button>
-	<button id="btnBuySeller"> Get a seller (<span id="elSellerCost"></span> coins)</button>
 	<br>
-	<div id="elEndGame">  </div>
+	<div id="elEndGame"> There is no more content in the game </div>
 	<button style="float: right;" onclick="game.clearSave()"> Reset game </button>
 
-
+	<!-- using inline <script> tags is an common practice -->
 	<script>
 		/** everything that saves goes here */
 		var data = {
-			tick: 0,
-			stone: 0,
 			coins: 0,
-			sellers: 0,
 			workers: 0,
 		};
 		/** everything that is function goes here */
@@ -39,46 +32,31 @@
 			init() {
 				// using `element.onclick` is cancer, but it is simple and does work
 				btnBuyWorker.onclick = () => game.getWorker();
-				
 			},
 			/** everything that updates goes here */
 			tick() {
-				data.tick = data.tick + 1;
-				data.stone += data.workers;
-				if (data.tick.mod = 2) {
-					data.stone = data.stone - (data.sellers * 2);
-					data.coins = data.coins + data.sellers;
-				} 
+				data.coins += data.workers;
 
 				game.updateDisplay();
 			},
 			/** everything that draws goes here */
 			updateDisplay() {
-				
-				elStone.innerText = data.stone;
+				// finding elements as `window[id]` (or just `id`) is cancer, but it is simple and does work *fast*
+				// using `element.innerText` is a good practice
+				// using `element.hidden` is an okay practice
+				// using `button.disabled` is a good practice
+				// updating every text every tick may be cancer if you do over 10'000 text updates per second
 				elCoins.innerText = data.coins;
 				elWorkerContainer.hidden = data.workers == 0 && !game.canGetWorker();
 				elWorkerCost.innerText = game.getWorkerCost();
 				elWorkerCount.innerText = data.workers;
-				elSellerContainer.hidden = data.sellers == 0 && !game.canGetSeller();
-				elSellerCost.innerText = game.getSellerCost();
-				elSellerCount.innerText = data.sellers;
 				elEndGame.hidden = data.workers < 2;
 
 			},
 
-			getStone() {
-				data.stone++;
-				game.updateDisplay();
-			},
-
 			getCoin() {
-				if (data.stone >= 2) {
-					data.stone = data.stone - 2;
-					data.coins++;
-				}
+				data.coins++;
 				game.updateDisplay();
-				
 			},
 
 			getWorkerCost() {
@@ -91,20 +69,6 @@
 				if (game.canGetWorker()) {
 					data.coins -= game.getWorkerCost();
 					data.workers++;
-				}
-				game.updateDisplay();
-			},
-			
-			getSellerCost() {
-				return data.sellers * 2 + 20);
-			},
-			canGetSeller() {
-				return data.coins >= game.getSellerCost();
-			},
-			getSeller() {
-				if (game.canGetSeller()) {
-					data.coins -= game.getSellerCost();
-					data.sellers++;
 				}
 				game.updateDisplay();
 			},
@@ -123,18 +87,13 @@
 				location.reload();
 			},
 			start() {
-				
+				// using setInterval is an okay practice, it has its own features and problems
 				setInterval(() => game.tick(), /* 1 second */ 1e3);
 				setInterval(() => game.save(), /* 10 seconds */ 10e3);
 			},
 		}
 		game.load();
 		game.start();
-	</script>
-
-	<script>
-
-
 	</script>
 
 
