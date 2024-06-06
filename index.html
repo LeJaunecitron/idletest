@@ -5,22 +5,18 @@
 </head>
 
 <body>
-	<small>thx to dimava <a
-			href="https://github.com/Dimava/dimava.github.io/blob/master/idle-game-examples/cancer/index.html">his example</a></small>
+	<small>source code on <a
+			href="https://github.com/Dimava/dimava.github.io/blob/master/idle-game-examples/cancer/index.html">Github</a></small>
 
 	<!-- writing game elements in html is ok, and is a common practice -->
-	
 	<div id="elCoinsContainer"> Coins: <span id="elCoins"></span> </div>
 	<div id="elWorkerContainer"> Workers: <span id="elWorkerCount"></span> </div>
-	
 	<br>
 	<!-- using onclick in html is cancer, but is a common practice -->
-	
 	<button onclick="game.getCoin()"> Get a coin </button>
 	<button id="btnBuyWorker"> Get a worker (<span id="elWorkerCost"></span> coins)</button>
-	
 	<br>
-		
+	<div id="elEndGame"> There is no more content in the game </div>
 	<button style="float: right;" onclick="game.clearSave()"> Reset game </button>
 
 	<!-- using inline <script> tags is an common practice -->
