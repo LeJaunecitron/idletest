@@ -65,7 +65,7 @@
 				elWorkerCount.innerText = data.workers;
 				elSellerContainer.hidden = data.sellers == 0 && !game.canGetSeller();
 				elSellerCost.innerText = game.getSellerCost();
-				elSellerCount.innerText = data.seller;
+				elSellerCount.innerText = data.sellers;
 				elEndGame.hidden = data.workers < 2;
 
 			},
@@ -107,7 +107,7 @@
 			getSeller() {
 				if (game.canGetSeller()) {
 					data.coins -= game.getSellerCost();
-					data.seller++;
+					data.sellers++;
 				}
 				game.updateDisplay();
 			},
