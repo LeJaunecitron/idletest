@@ -1,34 +1,32 @@
-<html>
+html>
 
 <head>
-	<title>Idle Test</title>
+	<title>The Cancer Idle</title>
 </head>
 
 <body>
-	<small> thx to Dimava <a
-			href="https://github.com/Dimava/dimava.github.io/blob/master/idle-game-examples/cancer/index.html">His example</a></small>
+	<small>thx to dimava <a
+			href="https://github.com/Dimava/dimava.github.io/blob/master/idle-game-examples/cancer/index.html">his example</a></small>
 
 	<!-- writing game elements in html is ok, and is a common practice -->
-
-	<div id="elStoneContainer"> Stone: <span id="elStone"></span> </div>
-	<div id="elCoinsContainer"> Coins: <span id="elCoins"></span> </div>
-	<div id="elWorkerContainer"> Miners: <span id="elWorkerCount"></span> </div>
-	<br>
 	
-	<!-- using onclick in html is cancer, but is a common practice -->
-
-	<button onclick="game.getStone()"> Mine for a stone </button>
-	<button onclick="game.getCoin()"> Sell a stone </button>
-	<button id="btnBuyWorker"> Get a miner (<span id="elWorkerCost"></span> coins)</button>
+	<div id="elCoinsContainer"> Coins: <span id="elCoins"></span> </div>
+	<div id="elWorkerContainer"> Workers: <span id="elWorkerCount"></span> </div>
+	
 	<br>
-	<div id="elEndGame"> There is no more content in the game </div>
+	<!-- using onclick in html is cancer, but is a common practice -->
+	
+	<button onclick="game.getCoin()"> Get a coin </button>
+	<button id="btnBuyWorker"> Get a worker (<span id="elWorkerCost"></span> coins)</button>
+	
+	<br>
+		
 	<button style="float: right;" onclick="game.clearSave()"> Reset game </button>
 
 	<!-- using inline <script> tags is an common practice -->
 	<script>
 		/** everything that saves goes here */
 		var data = {
-			stone: 0, 
 			coins: 0,
 			workers: 0,
 		};
@@ -38,11 +36,10 @@
 			init() {
 				// using `element.onclick` is cancer, but it is simple and does work
 				btnBuyWorker.onclick = () => game.getWorker();
-				btnGetStone.onclick = () => game.getStone();
 			},
 			/** everything that updates goes here */
 			tick() {
-				data.stone = data.workers + sata.stone ;
+				data.coins += data.workers;
 
 				game.updateDisplay();
 			},
@@ -53,25 +50,16 @@
 				// using `element.hidden` is an okay practice
 				// using `button.disabled` is a good practice
 				// updating every text every tick may be cancer if you do over 10'000 text updates per second
-				elStone.innerText = data.stone;
 				elCoins.innerText = data.coins;
 				elWorkerContainer.hidden = data.workers == 0 && !game.canGetWorker();
 				elWorkerCost.innerText = game.getWorkerCost();
 				elWorkerCount.innerText = data.workers;
-				elEndGame.hidden = data.workers < 100;
+				elEndGame.hidden = data.workers < 2;
 
 			},
 
 			getCoin() {
-				if (data.stone >= 1) {
-					data.stone = data.stone - 1;
-					data.coins++;
-				}
-				game.updateDisplay();
-			},
-
-			getStone() {
-				data.stone++;
+				data.coins++;
 				game.updateDisplay();
 			},
 
