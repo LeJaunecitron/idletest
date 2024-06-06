@@ -39,6 +39,7 @@
 			init() {
 				
 				btnBuyMiner.onclick = () => game.getMiner();
+				btnBuySeller.onclick = () => game.getSeller();
 				
 			},
 			/** everything that updates goes here */
@@ -61,7 +62,7 @@
 				elMinerContainer.hidden = data.miners == 0 && !game.canGetMiner();
 				elMinerCost.innerText = game.getMinerCost();
 				elMinerCount.innerText = data.miners;
-				
+				elSellerContainer.hidden = data.sellers == 0 && !game.canGetSeller();
 				elSellerCost.innerText = game.getSellerCost();
 				elSellerCount.innerText = data.sellers;
 
