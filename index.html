@@ -12,11 +12,13 @@
 	<div id="elStoneContainer"> Stone: <span id="elStone"></span> </div>
 	<div id="elCoinsContainer"> Coins: <span id="elCoins"></span> </div>
 	<div id="elWorkerContainer"> Workers: <span id="elWorkerCount"></span> </div>
+	<div id="elSellerContainer"> Sellers: <span id="elSellerCount"></span> </div>
 	<br>
 	<!-- using onclick in html is cancer, but is a common practice -->
 	<button onclick="game.getStone()"> Get a stone </button>
 	<button onclick="game.getCoin()"> sell a stone </button>
 	<button id="btnBuyWorker"> Get a worker (<span id="elWorkerCost"></span> coins)</button>
+	<button id="btnBuySeller"> Get a seller (<span id="elSellerCost"></span> coins)</button>
 	<br>
 	<div id="elEndGame">  </div>
 	<button style="float: right;" onclick="game.clearSave()"> Reset game </button>
@@ -25,8 +27,10 @@
 	<script>
 		/** everything that saves goes here */
 		var data = {
+			tick: 0,
 			stone: 0,
 			coins: 0,
+			sellers: 0,
 			workers: 0,
 		};
 		/** everything that is function goes here */
@@ -38,7 +42,12 @@
 			},
 			/** everything that updates goes here */
 			tick() {
+				data.tick = data.tick + 1;
 				data.stone += data.workers;
+				if (data.tick.mod = 2) {
+					data.stone = data.stone - (data.sellers * 2);
+					data.coins = data.coins + data.sellers;
+				} 
 
 				game.updateDisplay();
 			},
@@ -82,6 +91,20 @@
 				if (game.canGetWorker()) {
 					data.coins -= game.getWorkerCost();
 					data.workers++;
+				}
+				game.updateDisplay();
+			},
+			
+			getSellerCost() {
+				return (data.workers + 10) + (data.sellers + 20);
+			},
+			canGetSeller() {
+				return data.coins >= game.getSellerCost();
+			},
+			getSeller() {
+				if (game.canGetSeller()) {
+					data.coins -= game.getSellerCost();
+					data.seller++;
 				}
 				game.updateDisplay();
 			},
