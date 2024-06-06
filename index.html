@@ -11,7 +11,7 @@
 	<div id="elStoneContainer"> Stone: <span id="elStone"></span> </div>
 	<div id="elCoinsContainer"> Coins: <span id="elCoins"></span> </div>
 	<div id="elMinerContainer"> Miners: <span id="elMinerCount"></span> </div>
-	<div id="elSellerContainer"> Sellers: <span id="elSeller"></span> </div>
+	<div id="elSellerContainer"> Sellers: <span id="elSellerCount"></span> </div>
 	<br>
 
 	<button onclick="game.getStone()"> Mine for a stone </button>
@@ -45,7 +45,7 @@
 			/** everything that updates goes here */
 			tick() {
 				data.tick = data.tick + 1;
-				data.stone += data.miners;
+				data.stone = data.stone + data.miners;
 
 				
 
