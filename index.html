@@ -63,6 +63,9 @@
 				elWorkerContainer.hidden = data.workers == 0 && !game.canGetWorker();
 				elWorkerCost.innerText = game.getWorkerCost();
 				elWorkerCount.innerText = data.workers;
+				elSellerContainer.hidden = data.sellers == 0 && !game.canGetSeller();
+				elSellerCost.innerText = game.getSellerCost();
+				elSellerCount.innerText = data.seller;
 				elEndGame.hidden = data.workers < 2;
 
 			},
