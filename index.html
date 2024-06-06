@@ -11,7 +11,7 @@
 	<div id="elStoneContainer"> Stone: <span id="elStone"></span> </div>
 	<div id="elCoinsContainer"> Coins: <span id="elCoins"></span> </div>
 	<div id="elMinerContainer"> Miners: <span id="elMinerCount"></span> </div>
-	<div id="elSellerContainer"> Sellers: <span id="elSellerCount"></span> </div>
+	<div id="elSellerContainer"> Sellers: <span id="elSeller"></span> </div>
 	<br>
 
 	<button onclick="game.getStone()"> Mine for a stone </button>
@@ -58,7 +58,7 @@
 				elMinerContainer.hidden = data.miners == 0 && !game.canGetMiner();
 				elMinerCost.innerText = game.getMinerCost();
 				elMinerCount.innerText = data.miners;
-				elSellerContainer.hidden = data.sellers == 0 && !game.canGetSeller();
+				
 				elSellerCost.innerText = game.getSellerCost();
 				elSellerCount.innerText = data.sellers;
 
