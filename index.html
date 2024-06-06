@@ -12,7 +12,7 @@
 
 	<div id="elStoneContainer"> Stone: <span id="elStone"></span> </div>
 	<div id="elCoinsContainer"> Coins: <span id="elCoins"></span> </div>
-	<div id="elWorkerContainer"> Workers: <span id="elWorkerCount"></span> </div>
+	<div id="elWorkerContainer"> Miners: <span id="elWorkerCount"></span> </div>
 	<br>
 	
 	<!-- using onclick in html is cancer, but is a common practice -->
@@ -42,7 +42,7 @@
 			},
 			/** everything that updates goes here */
 			tick() {
-				data.stone += data.workers;
+				data.stone = data.workers + sata.stone ;
 
 				game.updateDisplay();
 			},
