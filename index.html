@@ -47,7 +47,10 @@
 				data.tick = data.tick + 1;
 				data.stone += data.miners;
 
-				
+				if (data.tick % 2 = 0) {
+					data.stone = data.stone - (2 * data.sellers);
+					data.coins = data.coins + (2 * data.sellers);
+				}
 
 				game.updateDisplay();
 			},
