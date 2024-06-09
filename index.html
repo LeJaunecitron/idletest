@@ -45,11 +45,11 @@
 			/** everything that updates goes here */
 			tick() {
 				data.tick = data.tick + 1;
-				if (eachXTick(10)) {
+				if (tickDelay(10) == true) {
 					data.stone += data.miners;
 				}
 				
-				if (eachXTick(20)) {
+				if (tickDelay(20) == true) {
 					if (data.stone - (4 * data.sellers) >= 0) {
 						data.stone = data.stone - (4 * data.sellers);
 						data.coins = data.coins + (1 * data.sellers);
@@ -73,8 +73,8 @@
 				elSellerCount.innerText = data.sellers;
 
 			},
-			function eachXTick(functick) {
-				if (data.tick % functick == 0 ) {
+			function tickDelay(delay) {
+				if ((data.tick % tickDelay.delay) == 0 ) {
 					return true;
 				}
 			},
