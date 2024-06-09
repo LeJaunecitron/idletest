@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>Idle test</title>
+	<title>Idle test 1/title>
 </head>
 
 <body>
@@ -47,9 +47,11 @@
 				data.tick = data.tick + 1;
 				data.stone += data.miners;
 
-				if ((data.tick % 2) == 0) and ((data.stone - (4 * data.sellers)) > -1) {
-					data.stone = data.stone - (4 * data.sellers);
-					data.coins = data.coins + (1 * data.sellers);
+				if ((data.tick % 2) == 0) {
+					if (data.stone - (4 * data.sellers) >= 0) {
+						data.stone = data.stone - (4 * data.sellers);
+						data.coins = data.coins + (1 * data.sellers);
+					}
 				}
 
 				game.updateDisplay();
