@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>Idle test 1 </title>
+	<title>Idle test </title>
 </head>
 
 <body>
@@ -45,9 +45,11 @@
 			/** everything that updates goes here */
 			tick() {
 				data.tick = data.tick + 1;
-				data.stone += data.miners;
-
-				if ((data.tick % 2) == 0) {
+				if (eachXTick(10)) {
+					data.stone += data.miners;
+				}
+				
+				if (eachXTick(20)) {
 					if (data.stone - (4 * data.sellers) >= 0) {
 						data.stone = data.stone - (4 * data.sellers);
 						data.coins = data.coins + (1 * data.sellers);
@@ -71,6 +73,11 @@
 				elSellerCount.innerText = data.sellers;
 
 			},
+			eachXTick(tick) {
+				if (data.tick % function.tick == 0 ) {
+					return true;
+				}
+			},
 
 			getCoin() {
 				if (data.stone >= 2) {
@@ -79,6 +86,7 @@
 				}
 				game.updateDisplay();
 			},
+			
 			getStone() {
 				data.stone++;
 				
@@ -128,7 +136,7 @@
 			},
 			start() {
 				// using setInterval is an okay practice, it has its own features and problems
-				setInterval(() => game.tick(), /* 1 second */ 1e3);
+				setInterval(() => game.tick(), /* 0.1 second */ 0.1e3);
 				setInterval(() => game.save(), /* 10 seconds */ 10e3);
 			},
 		}
